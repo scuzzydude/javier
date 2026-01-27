@@ -1,0 +1,42 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 24,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "wsl-debug",
+      "displayName": "WSL Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/wsl-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CUDA_ARCHITECTURES": "86"
+      }
+    },
+    {
+      "name": "wsl-release",
+      "displayName": "WSL Release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/wsl-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CUDA_ARCHITECTURES": "86"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build-debug",
+      "configurePreset": "wsl-debug"
+    },
+    {
+      "name": "build-release",
+      "configurePreset": "wsl-release"
+    }
+  ],
+  "testPresets": []
+}
+
