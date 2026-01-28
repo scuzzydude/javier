@@ -26,6 +26,22 @@ add_executable(javier
 
 target_include_directories(javier PRIVATE include)
 
+# Pipeline demo executable
+add_executable(pipeline_demo
+  src/pipeline_demo.cu
+  src/flash_controller.cu
+)
+
+target_include_directories(pipeline_demo PRIVATE include)
+
+target_compile_options(pipeline_demo PRIVATE
+  $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math>
+)
+
+set_target_properties(pipeline_demo PROPERTIES
+  CUDA_SEPARABLE_COMPILATION ON
+)
+
 # Useful compile options (optional)
 target_compile_options(javier PRIVATE
   $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math>
